@@ -32,7 +32,7 @@ public class InteractionController : MonoBehaviour
     {
         CheckForInteraction();
 
-        if (canpickup && Input.GetKeyDown("f") && !hasItem)
+        if (canpickup && Input.GetKeyDown("e") && !hasItem)
         {
             PickUp();
         }

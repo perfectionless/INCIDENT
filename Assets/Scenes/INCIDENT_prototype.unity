@@ -1907,9 +1907,9 @@ MonoBehaviour:
     LCTRL, Spacebar - Up/Down
 
     E -
-    Interact
+    Interact/Pick up
 
-    F - Pick Up
+    F - Flashlight
 
     G - Drop Item'
   m_isRightToLeft: 0
@@ -4597,7 +4597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8496139216697017804, guid: 94d64158034c3e14299d432167a6f6e0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
