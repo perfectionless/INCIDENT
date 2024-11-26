@@ -7,8 +7,10 @@ public class PauseGameManager : MonoBehaviour
     public GameObject settingsCanvas; // Drag your Settings Canvas here
     public GameObject mainMenuCanvas; // Drag your Main Menu Canvas here
     public PlayerMovement playerController; // Reference to your Player Controller script
+    public CharacterController charController;
+    public MonoBehaviour cameraMovementScript; // Reference to your camera movement script
 
-    public UnityEngine.UI.Button continueButton; // Drag your Continue Button here in the Inspector
+    public UnityEngine.UI.Button continueButton; // Drag your Continue Button here in the Inspector 
 
     private bool isPaused = false;
 
@@ -32,7 +34,7 @@ public class PauseGameManager : MonoBehaviour
     void Update()
     {
         // Toggle pause when "P" is pressed
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
             {
@@ -56,6 +58,17 @@ public class PauseGameManager : MonoBehaviour
         {
             playerController.enabled = false; // Disable player movement
         }
+
+        if (charController != null)
+        {
+            charController.enabled = false; // Disable player movement
+        }
+        
+        // Disable camera movement
+        if (cameraMovementScript != null)
+        {
+            cameraMovementScript.enabled = false;
+        }
     }
 
     public void ResumeGame()
@@ -68,6 +81,17 @@ public class PauseGameManager : MonoBehaviour
         if (playerController != null)
         {
             playerController.enabled = true; // Enable player movement
+        }
+
+        if (charController != null)
+        {
+            charController.enabled = true; // enable player movement
+        }
+
+                // reenable camera movement
+        if (cameraMovementScript != null)
+        {
+            cameraMovementScript.enabled = true;
         }
     }
 

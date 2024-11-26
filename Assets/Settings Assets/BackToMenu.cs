@@ -10,4 +10,12 @@ public class BackToMenu : MonoBehaviour
     {
         SceneManager.LoadSceneAsync(1);
     }
+
+        void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(1);
+        }
+    }
 }
