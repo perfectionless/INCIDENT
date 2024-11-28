@@ -434,9 +434,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 362357066}
-  speed: 6
-  ascendSpeed: 5
-  descendSpeed: 5
+  speed: 3
+  ascendSpeed: 3
+  descendSpeed: 3
 --- !u!143 &362357066
 CharacterController:
   m_ObjectHideFlags: 0
@@ -893,6 +893,14 @@ PrefabInstance:
     - target: {fileID: 1882943971410842872, guid: 6855b02801a34024ab33c0dcea48c1ce, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4783542574288681590, guid: 6855b02801a34024ab33c0dcea48c1ce, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 703.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4783542574288681590, guid: 6855b02801a34024ab33c0dcea48c1ce, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -300.2
       objectReference: {fileID: 0}
     - target: {fileID: 5372943879152264968, guid: 6855b02801a34024ab33c0dcea48c1ce, type: 3}
       propertyPath: m_Pivot.x
