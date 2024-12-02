@@ -5,6 +5,7 @@ using UnityEngine;
 public class InteractionController : MonoBehaviour
 {
     public GameObject myHands;
+    public Transform player; // Reference to the player transform
     public bool canpickup;
     private GameObject ObjectIwantToPickUp;
     private GameObject interactableObject;
@@ -18,7 +19,7 @@ public class InteractionController : MonoBehaviour
     public bool isLookingAtDoor;
     private bool isDoorOpen;
     private GameObject doorObject;
-    private GameObject currentlyHeldObject;
+    public GameObject currentlyHeldObject;
 
     public bool isLookingAtLever;
     private GameObject leverObject;
@@ -167,7 +168,7 @@ public class InteractionController : MonoBehaviour
         currentlyHeldObject = ObjectIwantToPickUp;
         currentlyHeldObject.GetComponent<Rigidbody>().isKinematic = true;
         currentlyHeldObject.transform.position = myHands.transform.position;
-        currentlyHeldObject.transform.parent = myHands.transform;
+        currentlyHeldObject.transform.SetParent(player); // Make the object a child of the player
         ResetHighlight();
     }
 

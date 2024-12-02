@@ -250,8 +250,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8616335693978196585}
   - {fileID: 546708260935013065}
+  - {fileID: 8616335693978196585}
   - {fileID: 3497511257887745497}
   - {fileID: 6068255714097630509}
   - {fileID: 5084870174511968066}
@@ -419,7 +419,10 @@ MonoBehaviour:
   settingsCanvas: {fileID: 0}
   mainMenuCanvas: {fileID: 0}
   playerController: {fileID: 0}
+  charController: {fileID: 0}
+  cameraMovementScript: {fileID: 0}
   continueButton: {fileID: 8480093912183148532}
+  restartButton: {fileID: 0}
 --- !u!1 &7685283242908124998
 GameObject:
   m_ObjectHideFlags: 0
