@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InteractionController : MonoBehaviour
 {
     public GameObject myHands;
+    public Transform player; // Reference to the player transform
     public bool canpickup;
     private GameObject ObjectIwantToPickUp;
     private GameObject interactableObject;
@@ -14,11 +16,13 @@ public class InteractionController : MonoBehaviour
     public Material highlightMaterial;
     private Material originalMaterial;
     private Material interactableoriginalMaterial;
+    public Image interactImage;
+    public GameObject jammedAlert;
 
     public bool isLookingAtDoor;
     private bool isDoorOpen;
     private GameObject doorObject;
-    private GameObject currentlyHeldObject;
+    public GameObject currentlyHeldObject;
 
     public bool isLookingAtLever;
     private GameObject leverObject;
@@ -28,13 +32,33 @@ public class InteractionController : MonoBehaviour
     // Keep track of doors that are currently "open"
     private Dictionary<GameObject, Coroutine> openDoors = new Dictionary<GameObject, Coroutine>();
 
+
+    void Start()
+    {
+        // Ensure the image is initially hidden
+        if (interactImage != null)
+        {
+            interactImage.gameObject.SetActive(false);
+        }
+    }
+
     void Update()
     {
         CheckForInteraction();
 
+        if (canpickup || isLookingAtDoor || isLookingAtLever)
+        {
+            interactImage.gameObject.SetActive(true);
+        }
+        else
+        {
+            interactImage.gameObject.SetActive(false);
+        }
+
         if (canpickup && Input.GetKeyDown("e") && !hasItem)
         {
             PickUp();
+            interactImage.gameObject.SetActive(false);
         }
 
         if (hasItem && Input.GetKeyDown("g"))
@@ -45,11 +69,13 @@ public class InteractionController : MonoBehaviour
         if (isLookingAtDoor && Input.GetKeyDown(KeyCode.E))
         {
             ToggleDoor();
+            interactImage.gameObject.SetActive(false);
         }
 
         if (isLookingAtLever && Input.GetKeyDown(KeyCode.E))
         {
             ToggleLever();
+            interactImage.gameObject.SetActive(false);
         }
     }
 
@@ -115,10 +141,15 @@ public class InteractionController : MonoBehaviour
             // Highlight differently if the player isn't holding the required object
             if (currentlyHeldObject == null || currentlyHeldObject.name != jammedDoor.requiredObjectName)
             {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    StartCoroutine(DisplayMessage());
+                }
                 Debug.Log("The door is jammed! You need to hold the correct object to open it.");
                 canpickup = false;
                 return;
             }
+
         }
 
         canpickup = false;
@@ -167,7 +198,7 @@ public class InteractionController : MonoBehaviour
         currentlyHeldObject = ObjectIwantToPickUp;
         currentlyHeldObject.GetComponent<Rigidbody>().isKinematic = true;
         currentlyHeldObject.transform.position = myHands.transform.position;
-        currentlyHeldObject.transform.parent = myHands.transform;
+        currentlyHeldObject.transform.SetParent(player); // Make the object a child of the player
         ResetHighlight();
     }
 
@@ -239,6 +270,13 @@ public class InteractionController : MonoBehaviour
             if (doorCollider != null) doorCollider.enabled = true;
             openDoors.Remove(door);
         }
+    }
+
+    IEnumerator DisplayMessage()
+    {
+        jammedAlert.SetActive(true); // Show the UI element
+        yield return new WaitForSeconds(3); // Wait for a few seconds
+        jammedAlert.SetActive(false); // Hide the UI element
     }
 
     void ToggleLever()
