@@ -7,9 +7,9 @@ public class Lever : MonoBehaviour
 
     [Header("For Exit Doors")]
     public GameObject WinDoor1;
-    public GameObject WinDoor2;
+    // public GameObject WinDoor2;
     public GameObject WinDoorIndicator1;
-    public GameObject WinDoorIndicator2;
+    // public GameObject WinDoorIndicator2;
     public GameObject ExitIndicator;
 
 
@@ -21,12 +21,12 @@ public class Lever : MonoBehaviour
             targetObject.SetActive(!isActive); // Toggle the active state
         }
 
-        if (WinDoor1 && WinDoor2 != null)
+        if (WinDoor1 != null)
         {
             WinDoor1.tag = "Door";
-            WinDoor2.tag = "Door";
+            // WinDoor2.tag = "Door";
             WinDoorIndicator1.SetActive(true);
-            WinDoorIndicator2.SetActive(true);
+            // WinDoorIndicator2.SetActive(true);
             ExitIndicator.SetActive(true);
         }
         
